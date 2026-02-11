@@ -1,0 +1,127 @@
+@import url('[https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap)');
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle,#3a2a22,#1b1411);
+font-family:'Cormorant Garamond',serif;
+perspective:2000px;
+}
+
+/* LIBRO */
+.book{
+position:relative;
+width:650px;
+height:560px;
+transform-style:preserve-3d;
+}
+
+/* LOMO CENTRAL */
+.spine{
+position:absolute;
+left:0;
+top:0;
+width:18px;
+height:100%;
+background:#2a1a13;
+box-shadow:inset 0 0 15px rgba(0,0,0,.9);
+border-radius:6px 0 0 6px;
+z-index:50;
+}
+
+/* HOJAS */
+.page{
+position:absolute;
+width:100%;
+height:100%;
+left:0;
+top:0;
+
+
+background:#f4ecd8;
+padding:70px;
+box-sizing:border-box;
+
+transform-origin:left;
+transform-style:preserve-3d;
+transition:transform 1s cubic-bezier(.77,0,.18,1);
+
+backface-visibility:hidden;
+overflow-y:auto;
+
+border-radius:4px;
+box-shadow:
+    0 15px 35px rgba(0,0,0,.6),
+    inset 0 0 35px rgba(0,0,0,.18);
+
+
+}
+
+/* textura papel */
+.page::after{
+content:"";
+position:absolute;
+inset:0;
+background-image:repeating-linear-gradient(
+0deg,
+rgba(0,0,0,.02) 0px,
+rgba(0,0,0,.02) 1px,
+transparent 1px,
+transparent 4px
+);
+pointer-events:none;
+}
+
+/* al pasar hoja */
+.page.flipped{
+transform:rotateY(-180deg);
+box-shadow:0 5px 15px rgba(0,0,0,.4);
+}
+
+/* TEXTO */
+h1{margin-top:0;font-size:34px;}
+h2{font-size:26px;}
+p{
+font-size:20px;
+line-height:1.8;
+text-align:justify;
+color:#2a211b;
+}
+
+/* PORTADA */
+.cover{
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.cover h1{
+font-size:48px;
+margin-bottom:25px;
+}
+
+/* FLECHAS */
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:45px;
+color:#f4ecd8;
+cursor:pointer;
+user-select:none;
+transition:.25s;
+z-index:100;
+}
+
+.arrow-left{ left:-70px; }
+.arrow-right{ right:-70px; }
+
+.arrow:hover{
+transform:translateY(-50%) scale(1.2);
+}
